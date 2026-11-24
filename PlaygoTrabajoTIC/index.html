@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PLAYGO — Reserva tu cancha en Lima en segundos. Mira qué horas están libres, compara precios y confirma al toque." />
+  <title>PLAYGO | Reserva tu cancha en Lima</title>
+
+  <!-- Google Fonts: Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+
+  <!-- Estilos principales -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Barra de navegación principal -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar__inner">
+      <a href="#inicio" class="brand" data-nav="inicio" aria-label="PLAYGO Inicio">
+        <span class="brand__mark">
+          <i data-lucide="trophy" aria-hidden="true"></i>
+        </span>
+        <span class="brand__text">PLAY<span class="brand__accent">GO</span></span>
+      </a>
+
+      <nav class="navbar__menu" id="navbarMenu" aria-label="Navegación principal">
+        <ul class="navbar__links">
+          <li>
+            <a href="#inicio" class="nav-link is-active" data-nav="inicio">Inicio</a>
+          </li>
+          <li>
+            <a href="#explorar" class="nav-link" data-nav="explorar">Explorar canchas</a>
+          </li>
+          <li>
+            <a href="#reservas" class="nav-link" data-nav="reservas">
+              Mis reservas
+              <span class="nav-badge" id="navReservationsBadge" hidden>0</span>
+            </a>
+          </li>
+        </ul>
+        <div class="navbar__actions">
+          <button type="button" class="btn btn--ghost btn--icon-text" id="navFavoritesBtn" title="Ver canchas favoritas">
+            <i data-lucide="heart" aria-hidden="true"></i>
+            <span>Favoritos</span>
+            <span class="nav-badge nav-badge--soft" id="navFavoritesBadge">0</span>
+          </button>
+          <button type="button" class="btn btn--primary" data-nav="explorar">
+            <i data-lucide="calendar-check" aria-hidden="true"></i>
+            <span>Reservar ahora</span>
+          </button>
+        </div>
+      </nav>
+
+      <button
+        type="button"
+        class="navbar__toggle"
+        id="mobileMenuToggle"
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
+        aria-controls="navbarMenu"
+      >
+        <i data-lucide="menu" id="mobileMenuIcon" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Contenedor principal SPA -->
+  <main id="appMain">
+    <!-- ==================== VISTA 1: INICIO ==================== -->
+    <section id="view-inicio" class="view is-active" aria-labelledby="heroTitle">
+      <!-- Hero Principal -->
+      <div class="hero">
+        <div class="container hero__grid">
+          <div class="hero__content">
+            <div class="hero__eyebrow">
+              <span class="eyebrow-dot"></span>
+              <span>Para la pichanga de todos los días</span>
+            </div>
+            <h1 class="hero__title" id="heroTitle">
+              Tu pichanga <span class="text-highlight">empieza aquí</span>
+            </h1>
+            <p class="hero__subtitle">
+              Mira qué canchas tienen hora libre, elige la tuya y reserva en segundos.
+              Sin estar rogando respuesta por WhatsApp: precio claro y confirmación al toque.
+            </p>
+
+            <!-- Buscador Visual -->
+            <form class="hero-search" id="heroSearchForm" novalidate>
+              <div class="hero-search__fields">
+                <div class="search-field">
+                  <label for="heroSportSelect" class="search-field__label">
+                    <i data-lucide="dribbble" aria-hidden="true"></i>
+                    <span>Deporte</span>
+                  </label>
+                  <select id="heroSportSelect" class="search-field__control">
+                    <option value="">Todos los deportes</option>
+                    <option value="Fútbol 7">Fútbol 7</option>
+                    <option value="Fútbol 6">Fútbol 6</option>
+                    <option value="Fulbito">Fulbito</option>
+                    <option value="Vóley">Vóley</option>
+                    <option value="Básquet">Básquet</option>
+                  </select>
+                </div>
+
+                <div class="search-field">
+                  <label for="heroDistrictSelect" class="search-field__label">
+                    <i data-lucide="map-pin" aria-hidden="true"></i>
+                    <span>Distrito</span>
+                  </label>
+                  <select id="heroDistrictSelect" class="search-field__control">
+                    <option value="">Todos los distritos</option>
+                    <option value="Breña">Breña</option>
+                    <option value="Magdalena del Mar">Magdalena del Mar</option>
+                    <option value="Pueblo Libre">Pueblo Libre</option>
+                    <option value="Jesús María">Jesús María</option>
+                  </select>
+                </div>
+
+                <div class="search-field">
+                  <label for="heroDateInput" class="search-field__label">
+                    <i data-lucide="calendar" aria-hidden="true"></i>
+                    <span>Fecha</span>
+                  </label>
+                  <input type="date" id="heroDateInput" class="search-field__control" />
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn--primary btn--lg hero-search__submit">
+                <i data-lucide="search" aria-hidden="true"></i>
+                <span>Ver canchas libres</span>
+              </button>
+            </form>
+
+            <!-- Indicadores clave -->
+            <div class="hero__metrics">
+              <div class="metric-item">
+                <span class="metric-item__value">5 canchas</span>
+                <span class="metric-item__label">En 4 distritos de Lima</span>
+              </div>
+              <div class="metric-divider"></div>
+              <div class="metric-item">
+                <span class="metric-item__value">8 am – 11 pm</span>
+                <span class="metric-item__label">Desde la mañana hasta la noche</span>
+              </div>
+              <div class="metric-divider"></div>
+              <div class="metric-item">
+                <span class="metric-item__value">Desde S/ 35</span>
+                <span class="metric-item__label">Precio por hora, de día</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero__media">
+            <div class="hero-card">
+              <img
+                src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?auto=format&fit=crop&w=1200&q=80"
+                alt="Cancha de fútbol sintético iluminada lista para jugar"
+                class="hero-card__img"
+                data-fallback="soccer"
+              />
+              <div class="hero-card__overlay">
+                <div class="hero-status-pill">
+                  <span class="status-dot status-dot--available"></span>
+                  <span>Hay canchas libres hoy</span>
+                </div>
+                <div class="hero-card__caption">
+                  <strong>Nada de llamar ni esperar</strong>
+                  <span>Marca tus horas seguidas y apártala al toque.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Canchas Destacadas -->
+      <section class="section" aria-labelledby="featuredVenuesTitle">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <span class="section-kicker">En Lima</span>
+              <h2 class="section-title" id="featuredVenuesTitle">Canchas para tu próximo partido</h2>
+              <p class="section-subtitle">
+                Cinco complejos en Breña, Magdalena del Mar, Pueblo Libre y Jesús María. Elige el que te quede mejor.
+              </p>
+            </div>
+            <button type="button" class="btn btn--secondary" data-nav="explorar">
+              <span>Ver todas las canchas</span>
+              <i data-lucide="arrow-right" aria-hidden="true"></i>
+            </button>
+          </div>
+
+          <div class="venues-grid" id="featuredVenuesGrid"></div>
+        </div>
+      </section>
+
+      <!-- Cómo funciona -->
+      <section class="section section--alt" aria-labelledby="howItWorksTitle">
+        <div class="container">
+          <div class="section-header section-header--center">
+            <span class="section-kicker">Así de fácil</span>
+            <h2 class="section-title" id="howItWorksTitle">Reservar toma menos de un minuto</h2>
+            <p class="section-subtitle">
+              Tres pasos y tu equipo ya tiene cancha.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <article class="step-card">
+              <div class="step-card__top">
+                <span class="step-card__number">01</span>
+                <div class="step-card__icon">
+                  <i data-lucide="search" aria-hidden="true"></i>
+                </div>
+              </div>
+              <h3 class="step-card__title">Busca tu cancha</h3>
+              <p class="step-card__text">
+                Filtra por distrito, deporte, precio o si tiene luz para jugar de noche y estacionamiento.
+              </p>
+            </article>
+
+            <article class="step-card">
+              <div class="step-card__top">
+                <span class="step-card__number">02</span>
+                <div class="step-card__icon">
+                  <i data-lucide="clock" aria-hidden="true"></i>
+                </div>
+              </div>
+              <h3 class="step-card__title">Elige tu hora</h3>
+              <p class="step-card__text">
+                Escoge el día y marca una hora o varias seguidas, entre las 8 de la mañana y las 11 de la noche.
+              </p>
+            </article>
+
+            <article class="step-card">
+              <div class="step-card__top">
+                <span class="step-card__number">03</span>
+                <div class="step-card__icon">
+                  <i data-lucide="shield-check" aria-hidden="true"></i>
+                </div>
+              </div>
+              <h3 class="step-card__title">Confirma y listo</h3>
+              <p class="step-card__text">
+                Pon tus datos, elige cómo pagar y te llega tu código de reserva al toque.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección de Confianza -->
+      <section class="section" aria-labelledby="trustSectionTitle">
+        <div class="container">
+          <div class="trust-banner">
+            <div class="trust-banner__intro">
+              <span class="section-kicker section-kicker--lime">Por qué PLAYGO</span>
+              <h2 class="trust-banner__title" id="trustSectionTitle">
+                Gasta tu tiempo jugando, no llamando
+              </h2>
+              <p class="trust-banner__text">
+                Juntamos las canchas de Lima en un solo lugar, con precios de día y de noche bien claros.
+              </p>
+              <button type="button" class="btn btn--lime" data-nav="explorar">
+                <span>Ver horarios libres</span>
+                <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+              </button>
+            </div>
+
+            <div class="trust-grid">
+              <div class="trust-card">
+                <div class="trust-card__icon">
+                  <i data-lucide="zap" aria-hidden="true"></i>
+                </div>
+                <h3>Ahorra tiempo</h3>
+                <p>Nada de llamar cancha por cancha para preguntar si hay hora.</p>
+              </div>
+
+              <div class="trust-card">
+                <div class="trust-card__icon">
+                  <i data-lucide="scale" aria-hidden="true"></i>
+                </div>
+                <h3>Compara precios</h3>
+                <p>Mira de un vistazo cuánto cobra cada sede de día y de noche.</p>
+              </div>
+
+              <div class="trust-card">
+                <div class="trust-card__icon">
+                  <i data-lucide="calendar-days" aria-hidden="true"></i>
+                </div>
+                <h3>Consulta horarios</h3>
+                <p>Ves qué horas están libres y cuáles ya se ocuparon.</p>
+              </div>
+
+              <div class="trust-card">
+                <div class="trust-card__icon">
+                  <i data-lucide="users" aria-hidden="true"></i>
+                </div>
+                <h3>Organiza tus partidos</h3>
+                <p>Revisa tus reservas, la ubicación y comparte tu código con el equipo.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ==================== VISTA 2: EXPLORAR CANCHAS ==================== -->
+    <section id="view-explorar" class="view" aria-labelledby="exploreTitle" hidden>
+      <div class="page-header">
+        <div class="container">
+          <div class="page-header__row">
+            <div>
+              <span class="section-kicker">Todas las canchas</span>
+              <h1 class="page-header__title" id="exploreTitle">Encuentra tu cancha en Lima</h1>
+              <p class="page-header__subtitle">
+                Filtra por distrito, deporte, precio o servicios y encuentra la que tu equipo necesita.
+              </p>
+            </div>
+            <button type="button" class="btn btn--secondary mobile-filter-btn" id="toggleFiltersBtn" aria-expanded="false" aria-controls="filtersPanel">
+              <i data-lucide="sliders-horizontal" aria-hidden="true"></i>
+              <span>Filtros</span>
+            </button>
+          </div>
+
+          <!-- Barra superior de búsqueda y ordenamiento -->
+          <div class="explore-toolbar">
+            <div class="search-input-wrap">
+              <i data-lucide="search" aria-hidden="true"></i>
+              <input
+                type="search"
+                id="exploreSearchInput"
+                class="form-input"
+                placeholder="Busca por nombre, distrito o servicio (luz, camerinos...)"
+                aria-label="Buscar canchas"
+              />
+            </div>
+
+            <div class="explore-toolbar__controls">
+              <div class="sort-wrap">
+                <label for="exploreSortSelect" class="sr-only">Ordenar resultados</label>
+                <i data-lucide="arrow-up-down" aria-hidden="true"></i>
+                <select id="exploreSortSelect" class="form-select">
+                  <option value="featured">Recomendadas</option>
+                  <option value="price-asc">Más baratas primero</option>
+                  <option value="price-desc">Más caras primero</option>
+                  <option value="alpha-asc">Nombre (A a Z)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container explore-layout">
+        <!-- Panel de Filtros -->
+        <aside class="filters-panel" id="filtersPanel" aria-label="Filtros de búsqueda">
+          <div class="filters-panel__header">
+            <h2 class="filters-panel__title">
+              <i data-lucide="filter" aria-hidden="true"></i>
+              <span>Filtros</span>
+            </h2>
+            <button type="button" class="btn-link" id="clearFiltersBtn">Quitar filtros</button>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterDistrict" class="filter-label">Distrito</label>
+            <select id="filterDistrict" class="form-select">
+              <option value="">Todos los distritos</option>
+              <option value="Breña">Breña</option>
+              <option value="Magdalena del Mar">Magdalena del Mar</option>
+              <option value="Pueblo Libre">Pueblo Libre</option>
+              <option value="Jesús María">Jesús María</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterSport" class="filter-label">Deporte</label>
+            <select id="filterSport" class="form-select">
+              <option value="">Todos los deportes</option>
+              <option value="Fútbol 6">Fútbol 6</option>
+              <option value="Fútbol 7">Fútbol 7</option>
+              <option value="Fulbito">Fulbito</option>
+              <option value="Vóley">Vóley</option>
+              <option value="Básquet">Básquet</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterSurface" class="filter-label">Tipo de superficie</label>
+            <select id="filterSurface" class="form-select">
+              <option value="">Todas las superficies</option>
+              <option value="Grass sintético">Grass sintético</option>
+              <option value="Grass sintético FIFA">Grass sintético FIFA</option>
+              <option value="Losa multiusos">Losa multiusos</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <span class="filter-label">Precio por hora de día (S/)</span>
+            <div class="price-range-inputs">
+              <div>
+                <label for="filterMinPrice" class="sr-only">Precio mínimo</label>
+                <input
+                  type="number"
+                  id="filterMinPrice"
+                  class="form-input"
+                  min="0"
+                  step="5"
+                  placeholder="Mín (S/)"
+                />
+              </div>
+              <span class="price-range-sep">—</span>
+              <div>
+                <label for="filterMaxPrice" class="sr-only">Precio máximo</label>
+                <input
+                  type="number"
+                  id="filterMaxPrice"
+                  class="form-input"
+                  min="0"
+                  step="5"
+                  placeholder="Máx (S/)"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <span class="filter-label">Lo que necesitas</span>
+            <label class="checkbox-item">
+              <input type="checkbox" id="filterParking" />
+              <span>Estacionamiento</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" id="filterLighting" />
+              <span>Luz para jugar de noche</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" id="filterFavoritesOnly" />
+              <span>Solo mis favoritos</span>
+            </label>
+          </div>
+        </aside>
+
+        <!-- Resultados -->
+        <div class="explore-results">
+          <div class="results-bar">
+            <p class="results-bar__count" id="exploreResultsCount">Mostrando 5 canchas</p>
+            <div class="active-filters-chips" id="activeFiltersChips"></div>
+          </div>
+
+          <div class="venues-grid venues-grid--explore" id="exploreVenuesGrid"></div>
+
+          <!-- Estado vacío -->
+          <div class="empty-state" id="exploreEmptyState" hidden>
+            <div class="empty-state__icon">
+              <i data-lucide="search-x" aria-hidden="true"></i>
+            </div>
+            <h3>No hay canchas con esos filtros</h3>
+            <p>Prueba con un rango de precio más amplio o quita algunos filtros.</p>
+            <button type="button" class="btn btn--primary" id="emptyResetFiltersBtn">
+              <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+              <span>Quitar todos los filtros</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VISTA 3: DETALLE DE CANCHA ==================== -->
+    <section id="view-detalle" class="view" aria-labelledby="detailVenueName" hidden>
+      <div class="container detail-container">
+        <!-- Barra superior de navegación -->
+        <div class="detail-topbar">
+          <button type="button" class="btn btn--ghost" id="detailBackBtn">
+            <i data-lucide="arrow-left" aria-hidden="true"></i>
+            <span>Volver a las canchas</span>
+          </button>
+          <div class="detail-topbar__actions">
+            <button type="button" class="btn btn--secondary" id="detailFavoriteBtn">
+              <i data-lucide="heart" aria-hidden="true"></i>
+              <span id="detailFavoriteText">Guardar en favoritos</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Encabezado de la cancha -->
+        <div class="detail-header">
+          <div>
+            <div class="detail-badges" id="detailTopBadges"></div>
+            <h1 class="detail-title" id="detailVenueName">Nombre del complejo</h1>
+            <p class="detail-address">
+              <i data-lucide="map-pin" aria-hidden="true"></i>
+              <span id="detailVenueAddress">Dirección completa</span>
+            </p>
+          </div>
+          <div class="detail-rates-box">
+            <div class="rate-pill">
+              <span class="rate-pill__label">De día (8:00 a 17:00)</span>
+              <strong class="rate-pill__value" id="detailDayRate">S/ 0 / h</strong>
+            </div>
+            <div class="rate-pill rate-pill--night">
+              <span class="rate-pill__label">De noche (18:00 a 23:00)</span>
+              <strong class="rate-pill__value" id="detailNightRate">S/ 0 / h</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Galería moderna -->
+        <div class="detail-gallery" id="detailGallery">
+          <div class="detail-gallery__main">
+            <img id="detailMainImage" src="" alt="Vista principal de la cancha" />
+            <span class="gallery-disclaimer">Foto referencial de este tipo de cancha</span>
+          </div>
+          <div class="detail-gallery__thumbs" id="detailGalleryThumbs"></div>
+        </div>
+
+        <!-- Contenido principal en 2 columnas: Info + Reserva / Resumen Sticky -->
+        <div class="detail-grid">
+          <div class="detail-main-col">
+            <!-- Información general y servicios -->
+            <article class="detail-card">
+              <h2 class="detail-card__title">Sobre la cancha</h2>
+              <p class="detail-description" id="detailVenueDescription"></p>
+
+              <div class="detail-specs">
+                <div class="spec-box">
+                  <span class="spec-box__label">Distrito</span>
+                  <strong class="spec-box__value" id="detailDistrict">—</strong>
+                </div>
+                <div class="spec-box">
+                  <span class="spec-box__label">Superficie</span>
+                  <strong class="spec-box__value" id="detailSurface">—</strong>
+                </div>
+                <div class="spec-box">
+                  <span class="spec-box__label">Deportes</span>
+                  <strong class="spec-box__value" id="detailSportsList">—</strong>
+                </div>
+              </div>
+
+              <h3 class="detail-card__subtitle">Lo que incluye</h3>
+              <ul class="services-list" id="detailServicesList"></ul>
+            </article>
+
+            <!-- Selector de Fecha y Matriz de Horarios -->
+            <article class="detail-card" id="bookingSchedulerCard">
+              <div class="detail-card__head">
+                <div>
+                  <h2 class="detail-card__title">Elige tu horario</h2>
+                  <p class="detail-card__hint">
+                    Elige el día y marca una hora o varias seguidas. Las grises ya están ocupadas.
+                  </p>
+                </div>
+              </div>
+
+              <div class="scheduler-grid">
+                <!-- Calendario interactivo -->
+                <div class="calendar-widget" aria-label="Calendario de reserva">
+                  <div class="calendar-widget__header">
+                    <button type="button" class="icon-btn" id="calPrevMonthBtn" aria-label="Mes anterior">
+                      <i data-lucide="chevron-left" aria-hidden="true"></i>
+                    </button>
+                    <strong id="calMonthYearLabel">Noviembre 2026</strong>
+                    <button type="button" class="icon-btn" id="calNextMonthBtn" aria-label="Mes siguiente">
+                      <i data-lucide="chevron-right" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                  <div class="calendar-widget__weekdays">
+                    <span>Lun</span>
+                    <span>Mar</span>
+                    <span>Mié</span>
+                    <span>Jue</span>
+                    <span>Vie</span>
+                    <span>Sáb</span>
+                    <span>Dom</span>
+                  </div>
+                  <div class="calendar-widget__days" id="calDaysGrid"></div>
+                </div>
+
+                <!-- Matriz de horarios -->
+                <div class="slots-widget">
+                  <div class="slots-widget__top">
+                    <span class="slots-selected-date" id="slotsSelectedDateText">Fecha seleccionada</span>
+                    <div class="slots-legend">
+                      <span class="legend-item"><i class="legend-dot legend-dot--available"></i> Libre</span>
+                      <span class="legend-item"><i class="legend-dot legend-dot--occupied"></i> Ocupado</span>
+                      <span class="legend-item"><i class="legend-dot legend-dot--selected"></i> Tu selección</span>
+                    </div>
+                  </div>
+
+                  <div class="slots-period-info">
+                    <span><i data-lucide="sun" aria-hidden="true"></i> De día: 8:00 – 17:00</span>
+                    <span><i data-lucide="moon" aria-hidden="true"></i> De noche, con luz: 18:00 – 23:00</span>
+                  </div>
+
+                  <div class="slots-grid" id="slotsMatrixGrid" role="group" aria-label="Bloques horarios disponibles"></div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Ubicación y Google Maps -->
+            <article class="detail-card">
+              <div class="detail-card__head">
+                <div>
+                  <h2 class="detail-card__title">¿Dónde queda?</h2>
+                  <p class="detail-card__hint" id="detailMapAddressCaption"></p>
+                </div>
+                <a
+                  id="detailExternalMapLink"
+                  href="https://maps.google.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn--secondary btn--sm"
+                >
+                  <i data-lucide="external-link" aria-hidden="true"></i>
+                  <span>Abrir en Google Maps</span>
+                </a>
+              </div>
+              <div class="map-frame-wrap">
+                <iframe
+                  id="detailGoogleMapFrame"
+                  title="Mapa de ubicación del complejo deportivo"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  src=""
+                ></iframe>
+              </div>
+            </article>
+          </div>
+
+          <!-- Tarjeta Lateral Sticky de Resumen -->
+          <aside class="detail-sidebar">
+            <div class="summary-card">
+              <div class="summary-card__header">
+                <span class="summary-card__kicker">Resumen de reserva</span>
+                <h3 class="summary-card__venue" id="summaryVenueName">—</h3>
+              </div>
+
+              <div class="summary-card__body">
+                <div class="summary-row">
+                  <span>Fecha</span>
+                  <strong id="summaryDate">—</strong>
+                </div>
+                <div class="summary-row">
+                  <span>Hora</span>
+                  <strong id="summaryTimeRange">Elige una hora</strong>
+                </div>
+                <div class="summary-row">
+                  <span>Duración</span>
+                  <strong id="summaryDuration">0 horas</strong>
+                </div>
+                <div class="summary-row">
+                  <span>Tarifa aplicada</span>
+                  <strong id="summaryRateDetail">—</strong>
+                </div>
+
+                <div class="summary-divider"></div>
+
+                <div class="summary-total">
+                  <span>Total</span>
+                  <strong id="summaryTotalAmount">S/ 0.00</strong>
+                </div>
+
+                <p class="summary-note" id="summaryHelperText">
+                  Toca una hora libre para empezar. Puedes sumar horas seguidas.
+                </p>
+
+                <button type="button" class="btn btn--primary btn--block btn--lg" id="proceedCheckoutBtn" disabled>
+                  <span>Seguir con la reserva</span>
+                  <i data-lucide="arrow-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VISTA 4: MIS RESERVAS ==================== -->
+    <section id="view-reservas" class="view" aria-labelledby="myReservationsTitle" hidden>
+      <div class="page-header">
+        <div class="container">
+          <div class="page-header__row">
+            <div>
+              <span class="section-kicker">Tus partidos</span>
+              <h1 class="page-header__title" id="myReservationsTitle">Mis reservas</h1>
+              <p class="page-header__subtitle">
+                Revisa tus reservas, saca tu comprobante o cancela si se cae el partido. La hora vuelve a quedar libre.
+              </p>
+            </div>
+            <button type="button" class="btn btn--primary" data-nav="explorar">
+              <i data-lucide="plus" aria-hidden="true"></i>
+              <span>Reservar otra cancha</span>
+            </button>
+          </div>
+
+          <!-- Pestañas de estado -->
+          <div class="tabs-bar" role="tablist" aria-label="Filtrar reservas por estado">
+            <button type="button" class="tab-btn is-active" data-res-filter="all" role="tab" aria-selected="true">
+              Todas (<span id="countResAll">0</span>)
+            </button>
+            <button type="button" class="tab-btn" data-res-filter="Confirmada" role="tab" aria-selected="false">
+              Confirmadas (<span id="countResConfirmed">0</span>)
+            </button>
+            <button type="button" class="tab-btn" data-res-filter="Cancelada" role="tab" aria-selected="false">
+              Canceladas (<span id="countResCancelled">0</span>)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container reservations-container">
+        <div class="reservations-list" id="reservationsList"></div>
+
+        <!-- Estado vacío -->
+        <div class="empty-state" id="reservationsEmptyState" hidden>
+          <div class="empty-state__icon">
+            <i data-lucide="calendar-x" aria-hidden="true"></i>
+          </div>
+          <h3 id="reservationsEmptyTitle">Todavía no reservaste nada</h3>
+          <p id="reservationsEmptyDesc">
+            Busca una cancha, elige tu hora y reserva en menos de un minuto.
+          </p>
+          <button type="button" class="btn btn--primary" data-nav="explorar">
+            <i data-lucide="search" aria-hidden="true"></i>
+            <span>Buscar canchas</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== MODAL: CHECKOUT Y COMPROBANTE ==================== -->
+  <div class="modal-backdrop" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutModalTitle" hidden>
+    <div class="modal-card modal-card--lg">
+      <div class="modal-card__header">
+        <div>
+          <span class="section-kicker" id="checkoutStepKicker">Último paso</span>
+          <h2 class="modal-card__title" id="checkoutModalTitle">Confirma tu reserva</h2>
+        </div>
+        <button type="button" class="icon-btn" id="closeCheckoutModalBtn" aria-label="Cerrar ventana">
+          <i data-lucide="x" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <!-- Paso 1: Formulario Checkout -->
+      <div id="checkoutFormStep">
+        <div class="demo-notice">
+          <i data-lucide="info" aria-hidden="true"></i>
+          <div>
+            <strong>Esto es una demo:</strong> no se cobra nada de verdad. La reserva se guarda solo en tu navegador.
+          </div>
+        </div>
+
+        <form id="checkoutForm" class="checkout-grid" novalidate>
+          <div class="checkout-col">
+            <h3 class="checkout-subtitle">1. Tus datos</h3>
+
+            <div class="form-group">
+              <label for="checkoutCustomerName" class="form-label">Nombre y apellido *</label>
+              <input
+                type="text"
+                id="checkoutCustomerName"
+                class="form-input"
+                placeholder="Ej. Carlos Mendoza"
+                required
+              />
+              <span class="field-error" id="errorCustomerName"></span>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="checkoutCustomerPhone" class="form-label">Celular / WhatsApp *</label>
+                <input
+                  type="tel"
+                  id="checkoutCustomerPhone"
+                  class="form-input"
+                  placeholder="Ej. 987654321"
+                  maxlength="15"
+                  required
+                />
+                <span class="field-error" id="errorCustomerPhone"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="checkoutCustomerEmail" class="form-label">Correo *</label>
+                <input
+                  type="email"
+                  id="checkoutCustomerEmail"
+                  class="form-input"
+                  placeholder="correo@ejemplo.com"
+                  required
+                />
+                <span class="field-error" id="errorCustomerEmail"></span>
+              </div>
+            </div>
+
+            <h3 class="checkout-subtitle">2. ¿Cómo pagas?</h3>
+            <div class="payment-methods" role="radiogroup" aria-label="Seleccionar método de pago">
+              <label class="payment-option is-selected">
+                <input type="radio" name="paymentMethod" value="Yape" checked />
+                <div class="payment-option__content">
+                  <span class="payment-badge payment-badge--yape">YAPE</span>
+                  <div>
+                    <strong>Yape</strong>
+                    <small>Escaneas el QR y listo, al toque.</small>
+                  </div>
+                </div>
+              </label>
+
+              <label class="payment-option">
+                <input type="radio" name="paymentMethod" value="Plin" />
+                <div class="payment-option__content">
+                  <span class="payment-badge payment-badge--plin">PLIN</span>
+                  <div>
+                    <strong>Plin</strong>
+                    <small>Transfieres desde tu app del banco.</small>
+                  </div>
+                </div>
+              </label>
+
+              <label class="payment-option">
+                <input type="radio" name="paymentMethod" value="Efectivo en el establecimiento" />
+                <div class="payment-option__content">
+                  <span class="payment-badge payment-badge--cash">
+                    <i data-lucide="banknote" aria-hidden="true"></i>
+                  </span>
+                  <div>
+                    <strong>Efectivo en la cancha</strong>
+                    <small>Pagas en recepción 15 min antes de jugar.</small>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="checkout-col checkout-col--summary">
+            <div class="checkout-summary-box">
+              <h3 class="checkout-subtitle">Tu pedido</h3>
+              <div class="summary-row">
+                <span>Cancha</span>
+                <strong id="chkVenueName">—</strong>
+              </div>
+              <div class="summary-row">
+                <span>Distrito</span>
+                <strong id="chkDistrict">—</strong>
+              </div>
+              <div class="summary-row">
+                <span>Fecha</span>
+                <strong id="chkDate">—</strong>
+              </div>
+              <div class="summary-row">
+                <span>Hora</span>
+                <strong id="chkTimeRange">—</strong>
+              </div>
+              <div class="summary-row">
+                <span>Horas</span>
+                <strong id="chkDuration">—</strong>
+              </div>
+              <div class="summary-row">
+                <span>Tarifa por hora</span>
+                <strong id="chkHourlyRate">—</strong>
+              </div>
+
+              <div class="summary-divider"></div>
+
+              <div class="summary-total">
+                <span>Total a pagar</span>
+                <strong id="chkTotal">S/ 0.00</strong>
+              </div>
+
+              <button type="submit" class="btn btn--primary btn--block btn--lg" id="confirmBookingBtn">
+                <i data-lucide="check-circle-2" aria-hidden="true"></i>
+                <span>Reservar ahora</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Paso 2: Pantalla de Éxito -->
+      <div id="checkoutSuccessStep" class="checkout-success" hidden>
+        <div class="checkout-success__icon">
+          <i data-lucide="check" aria-hidden="true"></i>
+        </div>
+        <h3>¡Listo, tu cancha está reservada!</h3>
+        <p class="checkout-success__subtitle">
+          Tu hora ya quedó apartada. Guarda tu código para el partido.
+        </p>
+
+        <div class="receipt-card">
+          <div class="receipt-card__code">
+            <span>TU CÓDIGO</span>
+            <strong id="receiptCode">PG-2026-00000</strong>
+          </div>
+
+          <div class="receipt-card__grid">
+            <div>
+              <span>Cancha</span>
+              <strong id="receiptVenue">—</strong>
+            </div>
+            <div>
+              <span>Fecha</span>
+              <strong id="receiptDate">—</strong>
+            </div>
+            <div>
+              <span>Hora</span>
+              <strong id="receiptTime">—</strong>
+            </div>
+            <div>
+              <span>Total</span>
+              <strong id="receiptTotal">—</strong>
+            </div>
+            <div>
+              <span>Pagas con</span>
+              <strong id="receiptMethod">—</strong>
+            </div>
+            <div>
+              <span>Estado</span>
+              <strong class="text-available">Confirmada</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="checkout-success__actions">
+          <button type="button" class="btn btn--secondary" id="successExploreBtn">
+            <span>Buscar otra cancha</span>
+          </button>
+          <button type="button" class="btn btn--primary" id="successMyBookingsBtn">
+            <i data-lucide="calendar-check" aria-hidden="true"></i>
+            <span>Ver mis partidos</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: DETALLE DE RESERVA ==================== -->
+  <div class="modal-backdrop" id="reservationDetailModal" role="dialog" aria-modal="true" aria-labelledby="resDetailModalTitle" hidden>
+    <div class="modal-card">
+      <div class="modal-card__header">
+        <div>
+          <span class="section-kicker">Tu comprobante</span>
+          <h2 class="modal-card__title" id="resDetailModalTitle">Detalle del partido</h2>
+        </div>
+        <button type="button" class="icon-btn" id="closeResDetailModalBtn" aria-label="Cerrar detalle">
+          <i data-lucide="x" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div id="resDetailModalBody"></div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: CONFIRMACIÓN DE CANCELACIÓN ==================== -->
+  <div class="modal-backdrop" id="cancelConfirmModal" role="dialog" aria-modal="true" aria-labelledby="cancelModalTitle" hidden>
+    <div class="modal-card modal-card--sm">
+      <div class="modal-card__header">
+        <h2 class="modal-card__title" id="cancelModalTitle">Cancelar reserva</h2>
+        <button type="button" class="icon-btn" id="closeCancelModalBtn" aria-label="Cerrar modal">
+          <i data-lucide="x" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="cancel-modal-body">
+        <div class="cancel-modal-icon">
+          <i data-lucide="alert-triangle" aria-hidden="true"></i>
+        </div>
+        <p>
+          ¿Seguro que quieres cancelar la reserva <strong id="cancelTargetCode"></strong>?
+        </p>
+        <p class="cancel-modal-note">
+          La hora se libera al toque para otros jugadores. Tu reserva queda en tu historial como <strong>Cancelada</strong>.
+        </p>
+        <div class="cancel-modal-actions">
+          <button type="button" class="btn btn--secondary" id="dismissCancelModalBtn">No, mantenerla</button>
+          <button type="button" class="btn btn--danger" id="confirmCancelActionBtn">Sí, cancelar reserva</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor de Toast Notifications -->
+  <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a href="#inicio" class="brand brand--light" data-nav="inicio">
+          <span class="brand__mark">
+            <i data-lucide="trophy" aria-hidden="true"></i>
+          </span>
+          <span class="brand__text">PLAY<span class="brand__accent">GO</span></span>
+        </a>
+        <p class="footer__desc">
+          Reserva canchas en Lima para tu pichanga, sin llamadas ni vueltas.
+        </p>
+        <span class="footer__demo-pill">Proyecto académico / demostración funcional</span>
+      </div>
+
+      <div>
+        <h3 class="footer__heading">Navegación</h3>
+        <ul class="footer__links">
+          <li><a href="#inicio" data-nav="inicio">Inicio</a></li>
+          <li><a href="#explorar" data-nav="explorar">Explorar canchas</a></li>
+          <li><a href="#reservas" data-nav="reservas">Mis reservas</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="footer__heading">Distritos</h3>
+        <ul class="footer__links">
+          <li><a href="#explorar" data-district-link="Breña">Breña</a></li>
+          <li><a href="#explorar" data-district-link="Magdalena del Mar">Magdalena del Mar</a></li>
+          <li><a href="#explorar" data-district-link="Pueblo Libre">Pueblo Libre</a></li>
+          <li><a href="#explorar" data-district-link="Jesús María">Jesús María</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="footer__heading">Contacto</h3>
+        <ul class="footer__contact">
+          <li>
+            <i data-lucide="mail" aria-hidden="true"></i>
+            <span>jeremysanchezreyes123@gmail.com</span>
+          </li>
+          <li>
+            <i data-lucide="phone" aria-hidden="true"></i>
+            <span>+51 997 401 238</span>
+          </li>
+          <li>
+            <i data-lucide="map-pin" aria-hidden="true"></i>
+            <span>Lima Metropolitana, Perú</span>
+          </li>
+        </ul>
+        <div class="footer__socials">
+          <a href="#social-instagram" class="social-link" data-social="Instagram" aria-label="Instagram PLAYGO">
+            <i data-lucide="instagram" aria-hidden="true"></i>
+          </a>
+          <a href="#social-facebook" class="social-link" data-social="Facebook" aria-label="Facebook PLAYGO">
+            <i data-lucide="facebook" aria-hidden="true"></i>
+          </a>
+          <a href="#social-linkedin" class="social-link" data-social="LinkedIn" aria-label="LinkedIn PLAYGO">
+            <i data-lucide="linkedin" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <p>&copy; 2026 PLAYGO Lima, Perú. Todos los derechos reservados.</p>
+      <p>Fotos referenciales. Precios y direcciones según cada sede.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts ordenados sin módulos ES6 para compatibilidad total con file:// -->
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
